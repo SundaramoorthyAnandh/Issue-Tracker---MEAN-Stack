@@ -1,0 +1,57 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/list">Incident Tracker</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a routerLink="/list">Home</a></li>
+            <li><a routerLink="/create">Create Incident</a></li>
+            <li class="active"><a routerLink="/updateSpecificIm">Update Incident</a></li>
+          </ul>
+    </div>
+</nav>
+
+<p id="banner-text">
+  <span>
+    <strong>Find Specific IM to Update</strong>
+  </span>
+</p>
+
+<div class="card" style="text-align: center;padding:50px;margin-bottom:20px;">
+    <label for="im-search">Search By IM</label>
+    <input style="width:60%;" id="im-search" type="text" min="6" [(ngModel)]="imNumber"
+     placeholder="Enter IM Number Here...">
+    <input type="button" (click)="editImIfExist()" value=" Find IM ">
+</div>
+<div *ngIf="showMessage" class="card" style="background: linear-gradient(to right, #a1ffce, #faffd1);padding:50px;">
+
+    <div *ngIf="isImExist" class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>IM Number</th>
+                  <th>Status</th>
+                  <th>Severity</th>
+                  <th>Responsible</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{message.title}}</td>
+                  <td>{{message.status}}</td>
+                  <td>{{message.severity}}</td>
+                  <td>{{message.responsible}}</td>
+                  <td>{{message.description}}</td>
+                </tr>
+              </tbody>
+        </table>
+
+        <input type="button" (click)="editIm()" value="Proceed to Update the IM">
+    </div>
+
+    <div *ngIf="!isImExist" style="text-align: center; font-size: 18px;">
+        <p><strong>ENTERED IM NOT FOUND</strong></p>
+        <p>Check the entered number correctly</p>
+    </div>
+</div>

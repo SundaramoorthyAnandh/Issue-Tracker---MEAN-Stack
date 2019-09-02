@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito ');
+@import url("../node_modules/primeicons/primeicons.css");
+/* @import url("../node_modules/primeng/resources/themes/nova-colored/theme.css"); */
+@import url("../node_modules/primeng/resources/primeng.min.css");
+
+body,html {
+  font-family: 'Product Sans';
+  font-size: 16px;
+  height:100%
+}
+
+body {
+
+  background: #00d2ff;
+  background: -webkit-linear-gradient(to right, #abbaab, #e0dede);
+  background: linear-gradient(to right, #abbaab, #e0dede);
+  /* Full height */
+  height: 100%;
+}
+
+/* .create-page {
+  min-height: 950px;
+  max-height: 1800px;
+} */
+
+#banner-text {
+  font-size: 24px;
+  align-content: center;
+  text-align: center;
+  padding: 10px;
+  margin-top:50px;
+}
+
+input[type=text], select, textarea {
+  width: 100% !important;
+  padding: 12px 20px !important;
+  margin: 8px 0 !important;
+  /* margin:auto; */
+  display: inline-block !important;
+  border: 1px solid rgb(241, 238, 238) !important;
+  border-radius: 14px !important;
+  box-sizing: border-box !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+input[type=text]:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border: solid 1px goldenrod !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) !important;
+}
+
+/* Style the submit button */
+input[type=submit],
+input[type=button] {
+  width: 100% !important;
+  background: #4dca73 !important;
+  padding: 14px 20px !important;
+  margin: 8px 0 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2) !important;
+  cursor: pointer;
+}
+
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar-success {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: rgb(50, 168, 111); /* Kinda green background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+#snackbar-failure {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: rgb(168, 50, 80); /* kinda red background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar-failure.show,
+#snackbar-success.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

@@ -1,0 +1,13 @@
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: 0.3s;
+  width: 95%;
+  /* margin-left: 150px; */
+  margin: auto;
+  align-items: center;
+  padding:20px;
+  /* background: -webkit-linear-gradient(to right, #abbaab, #e0dede);*/
+  background: whitesmoke;
+}

@@ -1,0 +1,164 @@
+<div class="bg">
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#incidentTrackerNavBar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" routerLink="/list">Incident Tracker</a>
+            </div>
+            <div  class="collapse navbar-collapse" id="incidentTrackerNavBar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a routerLink="/list">Home</a></li>
+                <li class="active"><a routerLink="/create">Create Incident</a></li>
+                <li><a routerLink="/updateSpecificIm">Update Incident</a></li>
+              </ul>
+            </div>
+      </div>
+  </nav>
+
+  <div class="create-page">
+
+      <div class="banner-text">
+          <p id="banner-text"><span><strong>Create New Incident</strong></span></p>
+      </div>
+
+      <div class="card" *ngIf ="showForm" >
+        <div class="form-container">
+          <form>
+
+            <div>
+              <label for="imnum">IM Number</label><br>
+              <input type="text" id="imnum" name="imnumber" value="{{latestIM}}" placeholder="IM Number..." aria-required="true" disabled>
+            </div>
+
+            <div>
+                <label for="severity">Severity</label>
+                <div class="severity">
+                  <input type="radio" id="severity-low" name="severity" [(ngModel)]="severity" value="Low" checked>
+                  <label for="severity-low">Low</label>
+                </div>
+
+                <div class="severity">
+                  <input type="radio" id="severity-mid" name="severity" [(ngModel)]="severity" value="Medium">
+                  <label for="severity-mid">Medium</label>
+                </div>
+
+                <div class="severity">
+                  <input type="radio" id="severity-high" name="severity" [(ngModel)]="severity" value="High">
+                  <label for="severity-high">High</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="responsible">Responsible</label><br>
+                <input type="text" id="responsible" name="responsible" [(ngModel)]="responsible" placeholder="Your Email..." required>
+            </div>
+
+            <div>
+                <label for="description">Description</label><br>
+                <textarea id="description" name="description" min="10" max="500" [(ngModel)]="description" placeholder="Enter the description of the issue..." required></textarea>
+            </div>
+
+            <div>
+                <input type="submit" (click)="submitIssue($event)" value="Submit">
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <!-- to right, #e1eec3, #f05053 -->
+      <div class="card" style="background: linear-gradient(to right, #00b09b, #96c93d); text-align: center; font-size:32px;padding:150px 10px;" *ngIf ="showSBsuccess" >
+        <p><strong>Successfully Uploaded ! </strong></p>
+        <p>Your IM is : {{latestIM}}</p>
+        <a routerLink="/list">Click to redirect to Home</a>
+      </div>
+
+      <div class="card" style="background: linear-gradient(to right, #e1eec3, #f05053);text-align: center;font-size:32px;padding:150px 10px;" *ngIf ="showSBfailure" >
+          <p><strong>Problem in uploading the form ! </strong></p><p>Please check the form inputs before submitting !</p>
+      </div>
+
+  </div>
+</div>
+
+
+<!--
+<div class="form-group">
+    <label class="control-label col-sm-2" for="imNum">IM Number:</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="imNum" value="{{latestIM}}"  placeholder="IM Number" disabled>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Status:</label>
+      <div class="col-sm-8">
+        <div class="radio">
+          <label><input type="radio" name="optradio" value="Open" checked>Open</label>
+        </div>
+         <div class="radio">
+          <label><input type="radio" name="optradio" value="Pending"disabled>Pending</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio" value="Closed" disabled>Closed</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-2" >Severity:</label>
+    <div class="col-sm-8">
+      <div class="radio">
+        <label><input type="radio" name="optradio1" (click)="severityFunc($event)" value="Low" checked>Low</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio1" (click)="severityFunc($event)" value="Medium" >Medium</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio1" (click)="severityFunc($event)" value="High" >High</label>
+      </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="responsible">Responsible:</label>
+    <div class="col-sm-8">
+      <input type="email" class="form-control" id="responsible" (change)="responsibleFunc($event)" required placeholder="Add your Email" />
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-8">
+      <textarea class="form-control" rows="5" minlength="20" maxlength="200" id="description" (change)="descriptionFunc($event)" required placeholder="Add the description of your issue"></textarea>
+    </div>
+    </div>
+
+    <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+        <ng-template let-message pTemplate="message">
+            <div style="text-align: center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                <h3>{{message.summary}}</h3>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-6">
+                    <button type="button" pButton (click)="submitIssue()" label="Yes" class="ui-button-success"></button>
+                </div>
+                <div class="ui-g-6">
+                    <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+                </div>
+            </div>
+        </ng-template>
+    </p-toast>
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button type="submit" pButton class="btn btn-primary" (click)="submitIssue($event)"> Raise IM </button>
+    </div>
+    </div>
+
+
+-->

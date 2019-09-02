@@ -1,0 +1,121 @@
+<div class="bg">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/list">Incident Tracker</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a routerLink="/list">Home</a></li>
+            <li><a routerLink="/create">Create Incident</a></li>
+            <li><a routerLink="/updateSpecificIm">Update Incident</a></li>
+          </ul>
+    </div>
+</nav>
+
+<div class="create-page">
+    <div class="banner-text">
+        <p id="banner-text"><span><strong>List of All Incidents</strong></span></p>
+    </div>
+    <div class="card">
+        <p-table #tt [value]="allIssues" [columns]="cols" [paginator]="true" [rows]="10" [resizableColumns]="true" [loading]="loading">
+            <ng-template pTemplate="caption">
+                <input type="button" pButton class="btn btn-primary" icon="fa-file-o" iconPos="left" label="All Data" (click)="tt.exportCSV()" style="float:right" value="Download as CSV">
+
+                <i class="fa fa-search" style="margin:4px 4px 0 0;padding:5px"></i>
+                <input type="text" pInputText size="50" placeholder="global search" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto;">
+            </ng-template>
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col *ngFor="let col of columns" [style.width]="col.width">
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th  [pSortableColumn]="columns[0].field" pResizableColumn >
+                        {{columns[0].header}}
+                        <p-sortIcon [field]="columns[0].field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                      </th>
+                      <th  [pSortableColumn]="columns[1].field" pResizableColumn >
+                          {{columns[1].header}}
+                          <p-sortIcon [field]="columns[1].field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                        <th  [pSortableColumn]="columns[2].field" pResizableColumn >
+                            {{columns[2].header}}
+                            <p-sortIcon [field]="columns[2].field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                          </th>
+                          <th pResizableColumn >
+                              {{columns[3].header}}
+                            </th>
+                            <th pResizableColumn >
+                                {{columns[4].header}}
+                            </th>
+                  <!-- <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-issue let-rowData>
+                <tr [pSelectableRow]="rowData">
+                    <td>{{issue.title}}</td>
+                    <td>{{issue.status}}</td>
+                    <td>{{issue.severity}}</td>
+                    <td>{{issue.responsible}}</td>
+                    <td>{{issue.description}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/list">Incident Tracker</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active">
+        <a routerLink="/list">
+        <i class="fa fa-home" aria-hidden="true"></i>Home
+        </a>
+      </li>
+      <li><a routerLink="/create">Create Incident</a></li>
+      <li><a routerLink="/edit">Update Incident</a></li>
+    </ul>
+  </div>
+</nav>
+<p id="banner-text"><span><strong>List All Incidents</strong></span></p>
+<table class="table table-hover" id="issuedata" data-unique-id="Keyword" data-sort-name="SearchVolume" data-sort-order="desc">
+  <thead>
+  <tr>
+    <th data-sortable="true">IM Number</th>
+    <th data-sortable="true">Status</th>
+    <th data-sortable="true">Severity</th>
+    <th data-sortable="true">Responsible</th>
+    <th data-sortable="true">Description</th>
+    <th data-sortable="true">ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let issue of allIssues; index as i">
+      <td>{{issue.title}}</td>
+      <td>{{issue.status}}</td>
+      <td>{{issue.severity}}</td>
+      <td>{{issue.responsible}}</td>
+      <td>{{issue.description}}</td>
+      <td>{{issue._id}}</td>
+  </tr>
+  </tbody>
+</table> -->
+

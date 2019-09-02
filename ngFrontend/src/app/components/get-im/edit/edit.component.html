@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/list">Incident Tracker</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a routerLink="/list">Home</a></li>
+            <li><a routerLink="/create">Create Incident</a></li>
+            <li class="active"><a routerLink="/updateSpecificIm">Update Incident</a></li>
+          </ul>
+    </div>
+</nav>
+<p id="banner-text"><span><strong>Update Incident</strong></span></p>
+<div class="card" *ngIf ="showForm">
+    <div class="form-container">
+      <form >
+
+        <div>
+          <label for="imnum">IM Number</label><br>
+          <input type="text" id="imnum" name="imnumber" value="{{latestIMsearched}}" placeholder="IM Number..." aria-required="true" disabled>
+        </div>
+
+        <div>
+            <label for="status">Status</label>
+            <div class="status">
+              <input type="radio" id="status-open" name="status" [(ngModel)]="status" value="Open">
+              <label for="status-open">Open</label>
+            </div>
+
+            <div class="status">
+              <input type="radio" id="status-pending" name="status" [(ngModel)]="status" value="Pending">
+              <label for="status-pending">Pending</label>
+            </div>
+
+            <div class="status">
+              <input type="radio" id="status-closed" name="status" [(ngModel)]="status" value="Closed">
+              <label for="status-closed">Closed</label>
+            </div>
+        </div>
+
+        <div>
+            <label for="severity">Severity</label>
+            <div class="severity">
+              <input type="radio" id="severity-low" name="severity" [(ngModel)]="severity" value="Low">
+              <label for="severity-low">Low</label>
+            </div>
+
+            <div class="severity">
+              <input type="radio" id="severity-mid" name="severity" [(ngModel)]="severity" value="Medium">
+              <label for="severity-mid">Medium</label>
+            </div>
+
+            <div class="severity">
+              <input type="radio" id="severity-high" name="severity" [(ngModel)]="severity" value="High">
+              <label for="severity-high">High</label>
+            </div>
+        </div>
+
+        <div>
+            <label for="responsible">Responsible</label><br>
+            <input type="text" id="responsible" name="responsible" [(ngModel)]="responsible" placeholder="Your Email..." disabled required>
+        </div>
+
+        <div>
+            <label for="description">Description</label><br>
+            <textarea id="description" name="description" min="10" max="500" [(ngModel)]="description" placeholder="Enter the description of the issue..." required></textarea>
+        </div>
+
+        <div>
+            <input type="submit" (click)="updateIssue()" value="Submit">
+        </div>
+
+      </form>
+    </div>
+</div>
+
+<div class="card" style="background: linear-gradient(to right, #00b09b, #96c93d); text-align: center; font-size:32px;padding:150px 10px;" *ngIf ="showSBsuccess" >
+    <p><strong>Successfully Updated your Ticket {{latestIM}} ! </strong></p>
+    <a routerLink="/list">Click to redirect to Home</a>
+</div>
+
+<div class="card" style="background: linear-gradient(to right, #e1eec3, #f05053);text-align: center;font-size:32px;padding:150px 10px;" *ngIf ="showSBfailure" >
+    <p><strong>Problem in uploading the form ! </strong></p><p>Please check the form inputs before submitting !</p>
+</div>
